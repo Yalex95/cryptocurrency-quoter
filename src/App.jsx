@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from "@emotion/styled";
 import ImageCripto from "./img/imagen-criptos.png";
 import Form from './components/Form';
-
-function App() {
-  const Container = styled.div`
+import Results from './components/Results';
+const Container = styled.div`
   max-width: 900px;
   margin: 0 auto;
   width: 90%;
@@ -37,6 +36,25 @@ function App() {
     margin: 10px auto 0;
   }
   `
+function App() {
+  const [currencies, setCurrencies] = useState({});
+  const [result, setResult] = useState({});
+  useEffect(() => {
+    if(Object.keys(currencies).length > 0){
+
+      const qouteCripto = async()=>{
+        const {currency, criptoCoin} = currencies
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptoCoin}&tsyms=${currency}`
+        const resp = await fetch(url)
+        const result = await resp.json()
+        setResult(result.DISPLAY[criptoCoin][currency])
+
+      }
+
+      qouteCripto()
+    
+    }
+  }, [currencies]);
   return (
     <Container>
       <Image
@@ -45,7 +63,10 @@ function App() {
       />
     <div>
       <Heading>Instant Quote Cryptocurrency</Heading>
-      <Form/>
+      <Form
+      setCurrencies={setCurrencies}
+      />
+      {result.PRICE && <Results result={result}/>}
     </div>
     </Container>
   )

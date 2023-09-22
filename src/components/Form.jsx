@@ -23,7 +23,7 @@ const InputSubmit = styled.input`
     }
 `
 
-const Form = () => {
+const Form = ({setCurrencies}) => {
   const [criptos, setCriptos] = useState([]);
   const [error, setError] = useState(false);
     // extract hook
@@ -55,6 +55,10 @@ const handleSubmit=e=>{
     return
   }
   setError(false)
+  setCurrencies({
+    currency,
+    criptoCoin
+  })
 }
   return (
     <>
