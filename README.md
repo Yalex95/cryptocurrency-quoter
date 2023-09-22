@@ -14,3 +14,5 @@ npm i @emotion/styled
 https://www.npmjs.com/package/@emotion/react
 npm i @emotion/react
 
+Cripto compare API consumption
+https://min-api.cryptocompare.com/
