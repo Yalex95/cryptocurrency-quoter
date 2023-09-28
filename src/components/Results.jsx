@@ -27,12 +27,12 @@ const Price = styled.p`
     }
 `
 
+
 const Results = ({result}) => {
     const {PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE} = result
   
     return (
     <Container>
-        
     <Image 
     src={`https://cryptocompare.com/${IMAGEURL}`} 
     alt="cripto coin" />
